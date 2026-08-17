@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # setup_symlinks.sh - Automate symlinking of dotfiles using GNU Stow
 # Usage:
