@@ -1,0 +1,39 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+
+# The main format string for the prompt
+# We avoid complex escapes by separating decorative characters into their own styled groups.
+format = '''
+[┌──\(](bold green)$username[㉿](bold green)$hostname[\)─\[](bold green)$directory[\]](bold green) $git_branch$git_status
+[└─](bold green)$character'''
+
+[username]
+show_always = true
+style_user = "bold blue"
+style_root = "bold red"
+format = "[$user]($style)"
+
+[hostname]
+ssh_only = false
+style = "bold blue"
+format = "[$hostname]($style)"
+
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+style = "bold blue"
+format = "[$path]($style)[$read_only]($read_only_style)"
+
+[character]
+success_symbol = '[\$](bold white)'
+error_symbol = '[\$](bold red)'
+
+[git_branch]
+symbol = " "
+style = "bold green"
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+style = "bold red"
+format = '([\[$all_status$ahead_behind\]]($style) )'
