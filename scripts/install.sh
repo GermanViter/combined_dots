@@ -68,6 +68,7 @@ INSTALL_ALL=false
 CHECK_ONLY=false
 NO_CHANGE_SHELL=false
 TARGET_PACKAGES=()
+SHELL_CHANGED=false
 
 show_help() {
     echo -e "${BOLD}install.sh${RESET} - Unified installer for dotfiles dependencies and GNU Stow symlinks"
@@ -595,6 +596,7 @@ migrate_to_zsh() {
                 new_shell=$(getent passwd "$USER" 2>/dev/null | cut -d: -f7 || echo "$SHELL")
                 if [[ "$new_shell" == "$zsh_path" || "$new_shell" == *"/zsh" ]]; then
                     log_success "Default shell changed to zsh ($zsh_path)"
+                    SHELL_CHANGED=true
                 fi
             fi
         fi
@@ -623,6 +625,10 @@ else
     if [ "$DRY_RUN" = true ]; then
         echo -e "${YELLOW}(Dry-run mode — run without --dry-run to apply changes)${RESET}"
     fi
+fi
+
+if [ "$SHELL_CHANGED" = true ]; then
+    log_warn "Default shell changed to zsh. Please log out and back in (or reboot) for changes to take effect."
 fi
 
 exit 0
