@@ -17,7 +17,3 @@ vim.keymap.set("n", "<leader>d", "<C-x>")
 
 -- undo tree toggle
 vim.keymap.set("n", "<leader>U", ":UndotreeToggle<CR>")
-
---Lazy
-vim.keymap.set("n", "<leader>L", vim.cmd.Lazy)
-
